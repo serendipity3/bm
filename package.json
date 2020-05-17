@@ -1,0 +1,28 @@
+{
+  "name": "svg",
+  "version": "1.0.0",
+  "description": "test svg",
+  "main": "index.js",
+  "dependencies": {
+    "@svgdotjs/svg.js": "^3.0.16",
+    "bufferutil": "^4.0.1",
+    "concurrently": "^5.2.0",
+    "http-server": "^0.12.3",
+    "typescript": "^3.9.2",
+    "utf-8-validate": "^5.0.2"
+  },
+  "devDependencies": {
+    "ts-loader": "^7.0.4",
+    "webpack": "^4.43.0",
+    "webpack-cli": "^3.3.11"
+  },
+  "scripts": {
+    "tsc": "tsc",
+    "server": "http-server -p 8000",
+    "webpack": "webpack --watch --config ./webpack.config.js",
+    "start": "concurrently \"npm run server\" \"npm run webpack\"",
+    "build": "webpack --config ./webpack.config.js"
+  },
+  "author": "jfujimoto",
+  "license": "ISC"
+}

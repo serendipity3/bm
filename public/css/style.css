@@ -1,0 +1,17 @@
+body {
+    margin: 0;
+}
+
+div#canvas {
+    height: 700px;
+    width:  700px;
+}
+
+#time,
+#energy {
+    height: 20px;
+}
+
+span {
+    font-size: 10%;
+}
