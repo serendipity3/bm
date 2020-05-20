@@ -3,24 +3,27 @@
 	<head>
 		<meta charset="utf-8">
 		<title>BrownianMotion.js DEMO</title>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 		<link rel="stylesheet" href="./css/style.css" type="text/css" media="screen" charset="utf-8">
-		<script src="https://cdn.jsdelivr.net/npm/vue"></script>
 	</head>
 	<body>
+		<h1 id="title">Brownian Motion</h1>
 		<div id="canvas"></div>
 		<div id="console">
-			<button id="reset" @click="reset">reset</button>
-			<button id="process" @click="process">{{ labelRunning }}</button>
-			<p id="time">time = {{ time }} ns</p>
-			<div id="temperature">
+			<div id="menu" class="col-md-3">
+				<button id="reset" @click="reset">reset</button>
+				<button id="process" @click="process">{{ labelRunning }}</button>
+				<button id="trajectry" @click="showTrajectry">{{ labelShowTrajectry }} trajectry</button>
+				<button id="particles" @click="showParticles">{{ labelShowParticles }} particles</button>
+			</div>
+			<p id="time" class="col-md-3">time = {{ time }} ns</p>
+			<div id="temperature" class="col-md-6">
 				<p>calculated temperature = {{ temp }} K</p>
 				<div> temperature set:
 					<input type="range" max="400" min="0" v-model="labelTemperature" v-on:change="setTemperature" />
-					<input v-model="labelTemperature" v-bind:placeholder="labelTemperature" /> K
+					<input id="inputTemperatureNumber" v-model="labelTemperature" v-bind:placeholder="labelTemperature" /> K
 				</div>
 			</div>
-			<button id="trajectry" @click="showTrajectry">{{ labelShowTrajectry }} trajectry</button>
-			<button id="particles" @click="showParticles">{{ labelShowParticles }} particles</button>
 		</div>
 		<script src="./js/index.js"></script>
 	</body>

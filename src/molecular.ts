@@ -37,14 +37,14 @@ export class Molecules { // {{{
             let nextPosition = this.position[i] + this._velocity[i] * dt
 
             let flag:boolean = false;
-            if (nextPosition < this._sigma) {
+            if (nextPosition < this._sigma/2) {
                 flag = true
                 this._velocity[i] = - this._velocity[i]
-                this.position[i] = this._sigma
-            } else if (nextPosition > area[i] - this._sigma) {
+                this.position[i] = this._sigma/2
+            } else if (nextPosition > area[i] - this._sigma/2) {
                 flag = true
                 this._velocity[i] = - this._velocity[i]
-                this.position[i] = area[i] - this._sigma
+                this.position[i] = area[i] - this._sigma/2
             } else {
                 this.position[i] = nextPosition
             };

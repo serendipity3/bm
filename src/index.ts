@@ -52,7 +52,7 @@ function main() {
                 if (this.isRunning == true) {
                     this.labelRunning = "pause";
                 } else {
-                    this.labelRunning = "start";
+                    this.labelRunning = "play";
                 }
             },
             setTemperature: function () {
