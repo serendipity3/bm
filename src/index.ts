@@ -28,6 +28,9 @@ function main() {
             time: System.t,
             temp: System.temperature,
 
+            isRunning: true,
+            labelRunning: "pause",
+
             labelTemperature: System.bathT,
 
             isTrajectry: true,
@@ -37,6 +40,21 @@ function main() {
             labelShowParticles: "hide"
         },
         methods: {
+            reset: function() {
+                System = new BrownianMotion(aspect);
+                this.labelTemperature = System.bathT;
+                for (var t of trajectryLine) { t.remove() }
+                trajectryLine = new Array( draw.polyline() );
+                trajectry = System.getTrajectry(width);
+            },
+            process: function() {
+                this.isRunning = !this.isRunning;
+                if (this.isRunning == true) {
+                    this.labelRunning = "pause";
+                } else {
+                    this.labelRunning = "start";
+                }
+            },
             setTemperature: function () {
                 System.bathT = this.labelTemperature;
             },
@@ -68,35 +86,37 @@ function main() {
 //  }}}
 
     function loop(timestamp:number) {
-        app.time = Number((System.t*1e9).toFixed(3));
-        if (Math.floor(System.t*1e13)%5 == 0) {
-            app.temp = Number((System.temperature).toFixed(2))
-        }
+        if (app.isRunning == true) {
+            app.time = Number((System.t*1e9).toFixed(3));
+            if (Math.floor(System.t*1e13)%5 == 0) {
+                app.temp = Number((System.temperature).toFixed(2))
+            }
 
-        for (let i=0;i<=5;i++) {
-            System.update();
-        };
-
-        positions = System.getPositions(width);
-        for (let i=0;i<=System.particleNumber;i++) {
-            particles[i].move(positions[i][0], positions[i][1]);
-        };
-
-        if (Math.floor(System.t*1e13)%5 == 0) {
-            var BP_position:number[] = System.getTrajectry(width);
-            let i = trajectryLine.length
-            trajectryLine[i] = draw.polyline([trajectry[0], trajectry[1], BP_position[0], BP_position[1] ]);
-            trajectryLine[i].fill('none');
-            trajectryLine[i].clear();
-            trajectryLine[i].stroke({ color: '#f06', width: 1 });
-            trajectry = BP_position;
-//  Vue {{{
-            if (app.isTrajectry == true) {
-                trajectryLine[i].show();
-            } else {
-                trajectryLine[i].hide();
+            for (let i=0;i<=5;i++) {
+                System.update();
             };
+
+            positions = System.getPositions(width);
+            for (let i=0;i<=System.particleNumber;i++) {
+                particles[i].move(positions[i][0], positions[i][1]);
+            };
+
+            if (Math.floor(System.t*1e13)%5 == 0) {
+                var BP_position:number[] = System.getTrajectry(width);
+                let i = trajectryLine.length
+                trajectryLine[i] = draw.polyline([trajectry[0], trajectry[1], BP_position[0], BP_position[1] ]);
+                trajectryLine[i].fill('none');
+                trajectryLine[i].clear();
+                trajectryLine[i].stroke({ color: '#f06', width: 1 });
+                trajectry = BP_position;
+//  Vue {{{
+                if (app.isTrajectry == true) {
+                    trajectryLine[i].show();
+                } else {
+                    trajectryLine[i].hide();
+                };
 //  }}}
+            };
         };
 
         window.requestAnimationFrame((ts) => loop(ts));

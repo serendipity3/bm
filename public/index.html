@@ -9,12 +9,14 @@
 	<body>
 		<div id="canvas"></div>
 		<div id="console">
+			<button id="reset" @click="reset">reset</button>
+			<button id="process" @click="process">{{ labelRunning }}</button>
 			<p id="time">time = {{ time }} ns</p>
 			<div id="temperature">
 				<p>calculated temperature = {{ temp }} K</p>
 				<div> temperature set:
 					<input type="range" max="400" min="0" v-model="labelTemperature" v-on:change="setTemperature" />
-					<input v-model="labelTemperature"placeholder="{{ labelTemperature }}" /> K
+					<input v-model="labelTemperature" v-bind:placeholder="labelTemperature" /> K
 				</div>
 			</div>
 			<button id="trajectry" @click="showTrajectry">{{ labelShowTrajectry }} trajectry</button>
