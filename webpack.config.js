@@ -23,6 +23,9 @@ module: {
 },
 // import 文で .ts ファイルを解決するため
 resolve: {
+    alias: {
+      'vue$': 'vue/dist/vue.esm.js' // 'vue/dist/vue.common.js' for webpack 1
+    },
     modules: [
     "node_modules", // node_modules 内も対象とする
     ],

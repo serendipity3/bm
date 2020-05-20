@@ -4,9 +4,22 @@
 		<meta charset="utf-8">
 		<title>BrownianMotion.js DEMO</title>
 		<link rel="stylesheet" href="./css/style.css" type="text/css" media="screen" charset="utf-8">
+		<script src="https://cdn.jsdelivr.net/npm/vue"></script>
 	</head>
 	<body>
 		<div id="canvas"></div>
+		<div id="console">
+			<p id="time">time = {{ time }} ns</p>
+			<div id="temperature">
+				<p>calculated temperature = {{ temp }} K</p>
+				<div> temperature set:
+					<input type="range" max="400" min="0" v-model="labelTemperature" v-on:change="setTemperature" />
+					<input v-model="labelTemperature"placeholder="{{ labelTemperature }}" /> K
+				</div>
+			</div>
+			<button id="trajectry" @click="showTrajectry">{{ labelShowTrajectry }} trajectry</button>
+			<button id="particles" @click="showParticles">{{ labelShowParticles }} particles</button>
+		</div>
 		<script src="./js/index.js"></script>
 	</body>
 </html>

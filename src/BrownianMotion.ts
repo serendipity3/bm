@@ -11,8 +11,8 @@ export class BrownianMotion {
     v0:number = 4e2;
     particleNumber = 100;
     realLength = 2.6e1 * Parameters.molecules[this.elementID][3];
-//    particleNumber = 200;
-//    realLength = 4e1 * Parameters.molecules[this.elementID][3];
+//    particleNumber = 300;
+//    realLength = 4.3e1 * Parameters.molecules[this.elementID][3];
 // }}}
     t:number;
     area:number[];
