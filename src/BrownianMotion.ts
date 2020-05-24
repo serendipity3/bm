@@ -5,11 +5,11 @@ import {Molecules} from "./molecular"
 export class BrownianMotion {
 // Setting {{{
     dimension = 2;
-    elementID:number = 1;
+    elementID:number = 2;
     bathT:number = 300e0;
     dt:number = 15e0 * Parameters.FS;
     v0:number = 4e2;
-    particleNumber = 100;
+    particleNumber = 120;
     realLength = 2.6e1 * Parameters.molecules[this.elementID][3];
 //    particleNumber = 200;
 //    realLength = 3.5e1 * Parameters.molecules[this.elementID][3];
